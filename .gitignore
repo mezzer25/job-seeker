@@ -1,0 +1,11 @@
+# Local/private artifacts
+resume/
+private/
+*.docx
+*.pdf
+*.xlsx
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
