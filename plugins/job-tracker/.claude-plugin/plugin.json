@@ -1,0 +1,10 @@
+{
+  "name": "job-tracker",
+  "version": "0.1.0",
+  "description": "Job-search workflows for the job-seeker tracker kit: scan target career pages, add new leads, generate status reports, and run advanced workflows like ranking, positioning, and interview prep.",
+  "author": {
+    "name": "community"
+  },
+  "license": "MIT",
+  "keywords": ["jobs", "career", "tracker", "job-search"]
+}

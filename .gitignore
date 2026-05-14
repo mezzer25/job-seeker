@@ -1,9 +1,11 @@
 # Local/private artifacts
+# Scoped to folders rather than file types so you can intentionally commit
+# reference materials (e.g. a saved job posting PDF) when useful.
 resume/
 private/
-*.docx
-*.pdf
-*.xlsx
+
+# Personal working notes
+notes.md
 
 # OS/editor noise
 .DS_Store

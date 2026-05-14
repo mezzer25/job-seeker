@@ -1,6 +1,16 @@
 ---
-description: Report status across job seeker leads
+name: job-status-report
+description: >
+  This skill should be used when the user asks for a "job status
+  report", "status of my job search", "where am I in my search",
+  "summarize my applications", "weekly job recap", "show me all my
+  leads", or "what's happening with my job hunt". It consolidates
+  every active opportunity in the current job-tracker workspace into
+  a single structured report with follow-ups and risks flagged.
+metadata:
+  version: "0.1.0"
 ---
+
 Create a concise job-search status report for the current job tracker workspace.
 
 Use these sources:
@@ -14,7 +24,7 @@ Before reporting:
 - Read the tracker guide and target list for context.
 - Read every top-level Markdown lead file in `leads/` except `_template.md`, `_template-minimal.md`, and `_example-redacted.md`.
 - Do not include private contact details, phone numbers, direct personal emails, sensitive recruiter messages, private compensation notes, or unnecessary PII.
-- Do not modify files unless I explicitly ask you to update the tracker.
+- Do not modify files unless the user explicitly asks you to update the tracker.
 
 Report format:
 

@@ -1,14 +1,30 @@
 # Job Seeker Tracker Kit
 
-A lightweight job-search operating system built from Markdown files and optional OpenCode commands.
+A lightweight job-search operating system built from Markdown files and optional AI-assistant commands (works with OpenCode, Claude, ChatGPT, Cursor, and similar tools).
 
 This kit is intended for people managing multiple job opportunities, especially after a displacement or layoff. It keeps target companies, active leads, follow-ups, interview prep, and weekly status reporting in one simple folder without requiring a database, SaaS tool, or CRM.
 
+## If You Just Lost Your Job, Start Here
+
+This kit can wait a day. So can applications.
+
+When you're ready, the smallest useful first step is:
+
+1. Copy this folder somewhere private on your computer.
+2. Open `targets.md` and list 3-5 companies you'd be interested in. That's it for day one.
+3. Come back tomorrow and copy `leads/_template-minimal.md` to start one lead file for the role that interests you most.
+
+Everything else — the full template, the commands, the weekly status reports — is optional and can be adopted as you have energy for it. The goal is to keep a search organized over weeks and months, not to be productive on day one.
+
 ## What This Does
+
+A practical, low-friction job-search operating system for people managing multiple opportunities. It uses Markdown plus your AI assistant of choice instead of a heavy CRM, making it easy to copy, customize, and keep private.
+
+Specifically, it:
 
 - Tracks one job opportunity per Markdown file.
 - Maintains a recurring target-company watchlist.
-- Produces concise job-search status reports with OpenCode.
+- Produces concise job-search status reports with an AI assistant.
 - Helps organize follow-up actions by urgency.
 - Captures role fit, risks, positioning, company facts, contacts, application materials, and interview prep.
 - Encourages privacy-safe tracking that avoids unnecessary personally identifiable information.
@@ -19,70 +35,213 @@ This kit is intended for people managing multiple job opportunities, especially 
 job-seeker/
   README.md
   AGENTS.md
+  LICENSE
   targets.md
+  job-tracker.plugin
   leads/
     _template.md
+    _template-minimal.md
     _example-redacted.md
   commands/
     job-status-report.md
     scan-targets.md
     add-lead.md
-  optional/
-    job-tracker-skill/
-      SKILL.md
+  plugins/
+    job-tracker/
+      .claude-plugin/
+        plugin.json
+      skills/
+        scan-targets/SKILL.md
+        add-lead/SKILL.md
+        job-status-report/SKILL.md
+        job-tracker-advanced/SKILL.md
+      README.md
 ```
+
+The kit ships the same workflows in two forms: plain prompt templates in `commands/` (for OpenCode, Claude Code, ChatGPT, Cursor, and similar tools) and a Cowork plugin in `plugins/job-tracker/`, with a prebuilt `job-tracker.plugin` archive for one-step install. Use whichever fits your assistant.
 
 ## Quick Start
 
 1. Copy this folder to a private workspace.
 2. Edit `targets.md` with companies and career-page URLs you want to monitor.
-3. Copy `leads/_template.md` for each job opportunity you want to track.
+3. Copy `leads/_template-minimal.md` (or `leads/_template.md` for the full version) for each job opportunity you want to track.
 4. Name lead files with lowercase kebab-case, such as `exampleco-solutions-architect.md`.
-5. Use `AGENTS.md` as the operating guide for OpenCode sessions in this folder.
-6. Optionally copy files from `commands/` into your OpenCode commands folder.
-
-Typical OpenCode commands folder:
-
-```text
-~/.config/opencode/commands/
-```
-
-On Windows, this is commonly:
-
-```text
-C:\Users\<you>\.config\opencode\commands\
-```
+5. Open this folder in your AI assistant so it can use `AGENTS.md`, `targets.md`, and `leads/` as project context. In Claude Code, open a terminal, navigate into the folder (`cd path/to/job-seeker`), and run `claude`. In OpenCode, do the same and run `opencode`. You can also paste the contents of `AGENTS.md` and your lead files directly into a chat-based assistant like Claude.ai or ChatGPT.
+6. Install the optional workflows if you want them: the slash commands (`/job-status-report`, `/scan-targets`, `/add-lead`) for most tools, or the `job-tracker.plugin` file for Cowork. Both also work as plain prompts pasted into any AI assistant. See [Commands](#commands) and [Install as a Cowork plugin](#install-as-a-cowork-plugin) below.
 
 ## Basic Workflow
 
 1. Add target companies to `targets.md`.
-2. Ask OpenCode to scan targets or use `/scan-targets` if installed.
+2. Ask your AI assistant to scan targets, or use `/scan-targets` if installed.
 3. Create a lead file for each promising role.
 4. Update lead files after applications, conversations, interviews, and follow-ups.
 5. Run `/job-status-report` weekly to summarize status and next actions.
 
 ## Status Values
 
-Use these status values consistently:
+Use these status values consistently. Each row suggests a typical next action; adapt as needed.
 
-- `researching`
-- `applied`
-- `warm-intro`
-- `screening`
-- `interviewing`
-- `offer`
-- `closed`
-- `paused`
+| Status | Meaning | Typical next action |
+| --- | --- | --- |
+| `researching` | Evaluating fit; not yet applied. | Decide go / no-go within about a week. |
+| `applied` | Application submitted; no human contact yet. | Follow up after 7-10 days. |
+| `warm-intro` | A contact has agreed to refer or introduce. | Coordinate the intro and tailor materials. |
+| `screening` | Recruiter call or initial screen scheduled or completed. | Prep next conversation; ask about timeline. |
+| `interviewing` | One or more interview rounds underway. | Prep next round; send thank-you within 24 hours. |
+| `offer` | Offer received or imminent. | Compare, negotiate, decide by the stated deadline. |
+| `closed` | Process ended — rejection, withdrawal, ghosting, or declined offer. | Note the reason briefly and move on. |
+| `paused` | Intentionally on hold (waiting on info, timing, or external reason). | Set a date to revisit. |
 
-## OpenCode Commands
+## Commands
 
-This kit includes command templates in `commands/`.
+This kit includes prompt templates in `commands/`. They work as Claude Code slash commands, OpenCode slash commands, or plain prompts pasted into any AI assistant — Claude, ChatGPT, Cursor, Gemini, or similar.
 
 - `/job-status-report`: summarize active leads, status counts, follow-ups, stale/risky leads, and recommended next moves.
 - `/scan-targets`: check career URLs in `targets.md`, summarize likely-fit roles, and append a scan log.
 - `/add-lead`: create a new lead file from pasted job details or a job URL.
 
-To install a command, copy the corresponding Markdown file into your OpenCode commands folder. Restart OpenCode if the command does not appear immediately.
+### Use them with any AI assistant
+
+Open the relevant `commands/*.md` file and copy the prompt text — everything after the second `---` line near the top of the file (those two `---` lines and anything between them are just setup metadata; skip them). Paste the prompt into the chat after opening this folder in the assistant or attaching `AGENTS.md`, `targets.md`, and your `leads/` files.
+
+### Install as Claude Code slash commands
+
+Claude Code looks for project-scoped slash commands in a `.claude/commands/` folder at the repo root. Linking or copying the command files there makes `/job-status-report`, `/scan-targets`, and `/add-lead` appear whenever you open this folder in Claude Code.
+
+You have three setup styles. Pick one. All three require a terminal open at the project root — if you haven't done that yet, open a terminal and run `cd path/to/job-seeker` first.
+
+**Option A - Symlink the existing folder (recommended).**
+
+This keeps `commands/` as the single source of truth. Any edit you make to `commands/*.md` is picked up automatically — no re-copying needed.
+
+Windows (PowerShell, no admin required):
+
+```powershell
+New-Item -ItemType Directory -Force -Path .claude | Out-Null
+cmd /c mklink /J .claude\commands commands
+```
+
+macOS or Linux:
+
+```bash
+mkdir -p .claude
+ln -s ../commands .claude/commands
+```
+
+**Option B - Copy the files.**
+
+Simpler if you're not comfortable with symlinks, but you'll need to re-copy if you edit the originals in `commands/`.
+
+Windows:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .claude\commands | Out-Null
+Copy-Item commands\*.md .claude\commands\
+```
+
+macOS or Linux:
+
+```bash
+mkdir -p .claude/commands
+cp commands/*.md .claude/commands/
+```
+
+**Option C - Install user-wide (easiest if you just want it working quickly).**
+
+Copy the files to your home `.claude/commands/` folder. This makes the commands available in every Claude Code session on your machine, regardless of which folder is open — no per-project setup needed.
+
+Windows:
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\commands" | Out-Null
+Copy-Item commands\*.md "$env:USERPROFILE\.claude\commands\"
+```
+
+macOS or Linux:
+
+```bash
+mkdir -p ~/.claude/commands
+cp commands/*.md ~/.claude/commands/
+```
+
+After installing with any option, restart Claude Code if the commands do not appear in the `/` menu right away.
+
+Note: if you keep this kit under version control, consider adding `.claude/commands` to `.gitignore` so a platform-specific symlink or junction is not committed.
+
+### Schedule a weekly status report (Claude Code Desktop)
+
+Claude Code Desktop can run the status report automatically on a recurring schedule so you don't have to remember to ask. Use a **local task** (not a cloud task) — local tasks run on your machine and can read your `leads/` files directly.
+
+To set it up:
+
+1. Open Claude Code Desktop and click **Schedule** in the sidebar.
+2. Click **New task → New local task**.
+3. Fill in the fields:
+   - **Name**: `job-status-report`
+   - **Description**: Weekly job search status report
+   - **Frequency**: Weekly — pick a day and time that suits you (Monday morning works well)
+   - **Prompt**: paste the text below. The prompt input also has a **working folder** control — set that to the path of this job-seeker folder.
+4. Click **Run now** once to test it and approve any permission prompts that appear. Future runs will proceed automatically.
+
+**Prompt to paste:**
+
+```
+Read AGENTS.md, targets.md, and every lead file in leads/ (skip _template.md, _template-minimal.md, and _example-redacted.md). Produce a concise job-search status report following the format in commands/job-status-report.md. Do not modify any files unless I explicitly ask.
+```
+
+The Desktop app must be open and your computer awake for the task to fire. If a run is missed because the computer was asleep, Desktop will catch up with one run the next time the app starts.
+
+You can also set this up by describing it in plain language inside any Desktop session: *"Create a weekly scheduled task that runs a job search status report every Monday at 9am using this folder."*
+
+The same approach works for `scan-targets`. Create a second local task with a frequency that suits your search pace (twice a week is a reasonable default) and this prompt:
+
+```
+Read AGENTS.md and targets.md. Fetch each career URL listed, identify likely-fit roles, and produce a scan report following the format in commands/scan-targets.md. Append a dated entry to the Scan Log in targets.md. Do not create lead files unless a role is clearly strong — if so, ask me first.
+```
+
+### Install as OpenCode slash commands
+
+OpenCode does not automatically pick up slash commands from the project folder, so you need to copy them to its global commands directory. Open a terminal inside the job-seeker folder and run:
+
+macOS or Linux:
+
+```bash
+mkdir -p ~/.config/opencode/commands
+cp commands/*.md ~/.config/opencode/commands/
+```
+
+Windows (PowerShell):
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.config\opencode\commands" | Out-Null
+Copy-Item commands\*.md "$env:USERPROFILE\.config\opencode\commands\"
+```
+
+Restart OpenCode after copying. The commands (`/job-status-report`, `/scan-targets`, `/add-lead`) should then appear in the `/` menu.
+
+### Install as a Cowork plugin
+
+If you use Claude's Cowork mode, the same workflows are packaged as a plugin in `plugins/job-tracker/`, with a prebuilt `job-tracker.plugin` archive at the repo root for one-step install.
+
+To install, open `job-tracker.plugin` from your file manager or drop it into a Cowork chat, then click "Install." The plugin adds four skills:
+
+- `scan-targets`, `add-lead`, and `job-status-report` — the same three workflows as the commands above.
+- `job-tracker-advanced` — advanced workflows (ranking, positioning, outreach drafts, interview prep, weekly action plans).
+
+Once installed, just ask in plain language ("scan my targets", "add a lead for ...", "give me a status report") and the matching skill runs. The plugin reads and writes only files in the workspace you open.
+
+To rebuild `job-tracker.plugin` after editing the source, zip the *contents* of `plugins/job-tracker/` (not the folder itself) into a file named `job-tracker.plugin`.
+
+## Pacing and Sustainability
+
+Job search is a marathon, not a sprint, and burnout is the most common reason searches stall.
+
+- Cap daily application volume rather than maximizing it. Three thoughtful applications usually beat fifteen rushed ones.
+- Warm intros convert at a much higher rate than cold applications. Spend at least as much time on conversations as on submissions.
+- Schedule full days off each week and treat them as non-negotiable.
+- Track activity, not just outcomes. A week of conversations with no offers is still progress.
+- Tell at least one person what you are working on each week. Isolation makes everything harder.
+- If a status report shows the same stalled leads for three weeks running, that is a signal to change targets or approach, not to push harder.
 
 ## Privacy Guidance
 
@@ -95,16 +254,14 @@ To install a command, copy the corresponding Markdown file into your OpenCode co
 
 ## What You Can Add Later
 
-- Resume-tailoring command.
-- Outreach and follow-up draft command.
-- Interview prep command.
-- Fit scoring by role and company.
+Resume tailoring, outreach and follow-up drafts, interview prep, and lead ranking are already covered by the `job-tracker-advanced` skill in the Cowork plugin. Still on the wish list:
+
+- Numeric fit scoring by role and company.
 - Weekly metrics report.
 - CSV export.
 - Calendar/task integration.
 - Static dashboard.
-- Optional skill for more advanced workflows.
 
-## Pitch Summary
+## License
 
-This is a practical, low-friction job-search operating system for people managing multiple opportunities. It uses Markdown and OpenCode instead of a heavy CRM, making it easy to copy, customize, and keep private. It helps job seekers stay organized, follow up consistently, and turn scattered job activity into a repeatable workflow.
+MIT — see `LICENSE`. Fork, copy, and adapt freely.

@@ -4,17 +4,19 @@
 
 - This folder is a private job-search workspace.
 - It tracks target companies, roles, contacts, application status, interview prep, positioning, and follow-up actions.
-- Keep the system simple: Markdown files first, no database, no app framework, no automation beyond OpenCode commands unless explicitly added.
+- Keep the system simple: Markdown files first, no database, no app framework, no automation beyond AI-assistant command prompts unless explicitly added.
 
 ## Main Files And Folders
 
 - `README.md` - Setup and usage instructions.
 - `targets.md` - Recurring target-company career search list and scan log.
 - `leads/` - One Markdown file per company or opportunity.
-- `leads/_template.md` - Template for new lead files.
+- `leads/_template.md` - Full template for new lead files.
+- `leads/_template-minimal.md` - Short template for early-stage or low-priority leads.
 - `leads/_example-redacted.md` - Safe example lead with no personal details.
-- `commands/` - Optional OpenCode command templates.
-- `optional/job-tracker-skill/` - Optional skill scaffold for advanced workflows.
+- `commands/` - Optional AI-assistant command/prompt templates (work with OpenCode, Claude, ChatGPT, Cursor, and similar).
+- `plugins/job-tracker/` - Source for the Cowork plugin that packages the workflows as skills (`scan-targets`, `add-lead`, `job-status-report`, `job-tracker-advanced`).
+- `job-tracker.plugin` - Prebuilt plugin archive for one-step install in Cowork.
 
 ## Lead Tracking
 
@@ -22,6 +24,7 @@
 - Use `leads/` for opportunity-specific tracking.
 - Prefer one Markdown file per company or opportunity.
 - Use lowercase kebab-case filenames, such as `exampleco-solutions-architect.md`.
+- Use `_template-minimal.md` for early-stage or low-priority leads; promote to `_template.md` once a lead is in screening, warm-intro, or interviewing.
 - Track role links, company context, contact names, warm intros, application status, interview notes, follow-up tasks, and tailored positioning.
 - Suggested status values: `researching`, `applied`, `warm-intro`, `screening`, `interviewing`, `offer`, `closed`, `paused`.
 - Keep lead notes factual and dated.
@@ -50,8 +53,16 @@
 - Prioritize active leads, stale leads, warm intros, upcoming deadlines, and next actions.
 - Do not expose private contact details in reports unless explicitly requested.
 
+## Tooling
+
+- The recurring workflows are available in two forms: plain prompt templates in `commands/` (for OpenCode, Claude, ChatGPT, Cursor, and similar) and a Cowork plugin in `plugins/job-tracker/`.
+- The Cowork plugin packages four skills: `scan-targets`, `add-lead`, `job-status-report`, and `job-tracker-advanced` (ranking, positioning, outreach drafts, interview prep, weekly planning).
+- When a request matches one of these workflows, follow the steps defined in the relevant `commands/*.md` or `SKILL.md` file instead of improvising.
+- Both forms assume the file layout described above. Keep filenames and conventions stable so the workflows keep working.
+- Rebuild `job-tracker.plugin` by zipping the contents of `plugins/job-tracker/` after edits.
+
 ## Sharing This Kit
 
-- Share the templates, commands, and redacted examples.
+- Share the templates, commands, plugin source, prebuilt `job-tracker.plugin`, and redacted examples.
 - Do not share real lead files without reviewing and redacting them first.
 - Do not include personal resumes, phone numbers, recruiter messages, or private contact details in a reusable copy.
