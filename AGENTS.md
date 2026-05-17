@@ -6,9 +6,46 @@
 - It tracks target companies, roles, contacts, application status, interview prep, positioning, and follow-up actions.
 - Keep the system simple: Markdown files first, no database, no app framework, no automation beyond AI-assistant command prompts unless explicitly added.
 
+## Context Files — Read These First
+
+Before running any workflow, read the following files if they exist. They provide the
+personal context needed to evaluate role fit, generate useful recommendations, and
+write on the user's behalf.
+
+### profile.md
+Located at the repo root. Contains target roles, preferred industries, company size and
+stage preferences, location and remote preferences, must-haves, nice-to-haves,
+deal-breakers, a career summary, and any explicit notes from the user about what they
+want next.
+
+Treat `profile.md` as the source of truth for what the user is looking for. When
+evaluating any role — whether scanning targets, reviewing a lead, or generating a status
+report — assess fit against this profile first.
+
+### resume/ folder
+Located at `resume/` in the repo root. May contain one or more Markdown resume files.
+
+- If a single file exists (e.g., `resume.md`), read it.
+- If multiple files exist (e.g., `resume-engineering.md`, `resume-management.md`), use
+  the one most relevant to the current task, or ask the user which to use if unclear.
+- `resume/_template.md` is a blank template — skip it unless the user asks about it.
+- Do not attempt to read PDF or Word files in this folder; use only Markdown versions.
+
+Use the resume to identify skills and experience that match or gap against a job
+description, inform fit notes in lead files, and suggest how the user might tailor
+their application materials for a specific role.
+
+**Privacy reminder:** `resume/` may contain personally identifiable information. Do not
+quote it verbatim in reports or outputs intended to be shared. Summarize instead.
+
+---
+
 ## Main Files And Folders
 
 - `README.md` - Setup and usage instructions.
+- `profile.md` - Career profile: target roles, preferences, must-haves, and background summary. Read before every workflow.
+- `resume/` - Plain-text Markdown resume(s). Read alongside `profile.md` to evaluate fit.
+- `resume/_template.md` - Blank resume template; copy and rename to fill in.
 - `targets.md` - Recurring target-company career search list and scan log.
 - `leads/` - One Markdown file per company or opportunity.
 - `leads/_template.md` - Full template for new lead files.

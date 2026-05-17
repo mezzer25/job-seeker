@@ -1,7 +1,9 @@
 # Local/private artifacts
 # Scoped to folders rather than file types so you can intentionally commit
 # reference materials (e.g. a saved job posting PDF) when useful.
-resume/
+# Keep the blank template but exclude any filled-in resume files
+resume/*
+!resume/_template.md
 private/
 
 # Personal working notes
