@@ -17,16 +17,16 @@ Use these sources:
 
 - `AGENTS.md`
 - `targets.md`
-- `leads/*.md`
+- `leads/**/*.md`
 
 Workflow:
 
-1. Read `AGENTS.md` and `targets.md`.
+1. Read `AGENTS.md`, `targets.md`, and existing leads recursively with `leads/**/*.md`.
 2. For each target company in `targets.md`, fetch the listed careers URL when accessible.
 3. After fetching a careers page, extract individual job posting URLs from the raw HTML wherever possible — look for `href` attributes on job listing anchor tags (e.g. Greenhouse, Lever, Workday, or similar ATS link patterns). Use these direct URLs in all output rather than linking back to the generic careers page.
 4. Look for likely-fit roles based on each target's `Target themes` plus any role preferences stated by the user.
 5. Do not create lead files unless the user explicitly asks or a role is clearly strong and you ask for confirmation first.
-6. Append a dated entry to the `## Scan Log` section of `targets.md` if the user asked you to update the tracker.
+6. Append a dated entry to the `## Scan Log` section of `targets.md` by default. Skip this only if the user explicitly asks for a read-only scan or no file updates.
 7. Keep the scan concise and factual.
 
 Report format:
@@ -64,7 +64,7 @@ Privacy rules:
 
 ## HTML Export
 
-After delivering the report in chat, write the full report as a self-contained HTML file to the `reports/` directory at the workspace root (the same directory that contains `AGENTS.md` and `leads/`). The file should be named `scan-report.html`. Create `reports/` if it does not exist.
+After delivering the report in chat, write the full report as a self-contained HTML file to the `reports/` directory at the workspace root (the same directory that contains `AGENTS.md` and `leads/`). The file should be named `scan-report.html`. Create `reports/` if it does not exist. Do this by default whenever a target scan is run, unless the user explicitly asked for a read-only scan or no file updates.
 
 HTML requirements:
 

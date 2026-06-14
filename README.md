@@ -12,7 +12,7 @@ When you're ready, the smallest useful first step is:
 
 1. Copy this folder somewhere private on your computer.
 2. Open `targets.md` and list 3-5 companies you'd be interested in. That's it for day one.
-3. Come back tomorrow and copy `leads/_template-minimal.md` to start one lead file for the role that interests you most.
+3. Come back tomorrow and copy `leads/_template-minimal.md` into a new company folder (e.g. `leads/exampleco/`) to start one lead file for the role that interests you most.
 
 Everything else — the full template, the commands, the weekly status reports — is optional and can be adopted as you have energy for it. The goal is to keep a search organized over weeks and months, not to be productive on day one.
 
@@ -43,6 +43,8 @@ job-seeker/
     _template.md
     _template-minimal.md
     _example-redacted.md
+    <company-name>/
+      <role-title>.md
   commands/
     job-status-report.md
     scan-targets.md
@@ -73,8 +75,8 @@ The kit ships the same workflows in two forms: plain prompt templates in `comman
 
 1. Copy this folder to a private workspace.
 2. Edit `targets.md` with companies and career-page URLs you want to monitor.
-3. Copy `leads/_template-minimal.md` (or `leads/_template.md` for the full version) for each job opportunity you want to track.
-4. Name lead files with lowercase kebab-case, such as `exampleco-solutions-architect.md`.
+3. Copy `leads/_template-minimal.md` (or `leads/_template.md` for the full version) for each job opportunity you want to track, placing it in a company folder.
+4. Store each opportunity at `leads/<company-name>/<role-title>.md`, using lowercase kebab-case for the company folder (unless the company has established casing) and the role filename — for example `leads/exampleco/solutions-architect.md`.
 5. Open this folder in your AI assistant so it can use `AGENTS.md`, `targets.md`, and `leads/` as project context. In Claude Code, open a terminal, navigate into the folder (`cd path/to/job-seeker`), and run `claude`. In OpenCode, do the same and run `opencode`. You can also paste the contents of `AGENTS.md` and your lead files directly into a chat-based assistant like Claude.ai or ChatGPT.
 6. Install the optional workflows if you want them: the slash commands (`/job-status-report`, `/scan-targets`, `/add-lead`) for most tools, or the `job-tracker.plugin` file for Cowork. Both also work as plain prompts pasted into any AI assistant. See [Commands](#commands) and [Install as a Cowork plugin](#install-as-a-cowork-plugin) below.
 

@@ -47,7 +47,7 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 - `resume/` - Plain-text Markdown resume(s). Read alongside `profile.md` to evaluate fit.
 - `resume/_template.md` - Blank resume template; copy and rename to fill in.
 - `targets.md` - Recurring target-company career search list and scan log.
-- `leads/` - One Markdown file per company or opportunity.
+- `leads/` - Company folders, each containing one Markdown file per opportunity (`leads/<company-name>/<role-title>.md`).
 - `leads/_template.md` - Full template for new lead files.
 - `leads/_template-minimal.md` - Short template for early-stage or low-priority leads.
 - `leads/_example-redacted.md` - Safe example lead with no personal details.
@@ -59,8 +59,10 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 
 - Use `targets.md` for recurring company career pages and scan notes before creating individual lead files.
 - Use `leads/` for opportunity-specific tracking.
-- Prefer one Markdown file per company or opportunity.
-- Use lowercase kebab-case filenames, such as `exampleco-solutions-architect.md`.
+- Store each opportunity in a company folder: `leads/<company-name>/<role-title>.md`, for example `leads/exampleco/solutions-architect.md`. Create the company folder if it does not already exist.
+- Use an existing company folder when one exists, preserving its casing. For new company folders, use lowercase kebab-case unless the company name has established casing in this tracker.
+- Use lowercase kebab-case for role filenames.
+- Check existing leads recursively with `leads/**/*.md` before creating a new file to avoid duplicates. Do not create opportunity files directly under `leads/`; only templates and shared tracker files belong at the top level.
 - Use `_template-minimal.md` for early-stage or low-priority leads; promote to `_template.md` once a lead is in screening, warm-intro, or interviewing.
 - Track role links, company context, contact names, warm intros, application status, interview notes, follow-up tasks, and tailored positioning.
 - Suggested status values: `researching`, `applied`, `warm-intro`, `screening`, `interviewing`, `offer`, `closed`, `paused`.
@@ -71,7 +73,8 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 ## Target Scanning
 
 - Use `targets.md` as the source of companies and career URLs to scan.
-- Record scan dates and outcomes in the scan log.
+- Record scan dates and outcomes in the `targets.md` scan log by default whenever a target scan is run, unless the user explicitly asks for a read-only scan or no file updates.
+- Update `reports/scan-report.html` and the scan stamp in `reports/index.html` by default whenever a target scan is run, under the same exception.
 - If a career site blocks automated access, note the limitation and ask for a direct job URL or manual review.
 - Create dedicated lead files only for roles worth pursuing or explicitly requested.
 
@@ -87,7 +90,9 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 ## Reporting
 
 - Status reports should be concise and factual.
+- Use root project files (`AGENTS.md`, `profile.md`, `targets.md`) and recursive lead folders (`leads/**/*.md`) as sources.
 - Prioritize active leads, stale leads, warm intros, upcoming deadlines, and next actions.
+- Always write `reports/job-status-report.html` and update the status stamp in `reports/index.html` whenever the user asks for a job status report. Treat this as the user's standing preference even if a pasted generic prompt says not to modify files; skip these report-file updates only if the user explicitly says the status report is read-only or says not to update report files.
 - Do not expose private contact details in reports unless explicitly requested.
 
 ## Tooling

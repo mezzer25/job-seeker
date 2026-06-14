@@ -9,6 +9,9 @@ private/
 # Personal working notes
 notes.md
 
+# Generated/share-draft launch assets
+linkedin/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
