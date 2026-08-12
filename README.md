@@ -4,6 +4,13 @@ A lightweight job-search operating system built from Markdown files and optional
 
 This kit is intended for people managing multiple job opportunities, especially after a displacement or layoff. It keeps target companies, active leads, follow-ups, interview prep, and weekly status reporting in one simple folder without requiring a database, SaaS tool, or CRM.
 
+> **This repo is the baseline.** It holds the generic, person-agnostic kit. Personal instances live in sibling repos and carry their own private context:
+>
+> - `job-seeker-ag` — Alex Gomez
+> - `job-seeker-aag` — Adrian Gomez
+>
+> Improvements to templates, commands, or workflow belong **here** first, then propagate to the instances. Personal leads, targets, and notes never belong in this repo.
+
 ## If You Just Lost Your Job, Start Here
 
 This kit can wait a day. So can applications.
