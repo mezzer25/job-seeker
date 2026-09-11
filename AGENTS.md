@@ -76,6 +76,7 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 
 - Use `targets.md` as the source of companies and career URLs to scan.
 - Record scan dates and outcomes in `docs/scan-log.md` by default whenever a target scan is run, unless the user explicitly asks for a read-only scan or no file updates. Overwrite the target's `Last scan` line in `targets.md` in the same run.
+- **An unchanged roster is a signal to inspect, not to stay quiet about.** Some career boards apply query parameters client-side and return a default or stale payload to a server-side fetch, which makes "nothing changed" indistinguishable from "the fetch silently failed". Where a target's `Fetch mechanics` names a browser as the required path, use it; where a run cannot, mark that target UNVERIFIED in the report rather than reporting a clean scan. Never suppress an unchanged-roster observation on the assumption that the target is simply quiet.
 - Keep state and history apart: cumulative facts about a target (streaks, posting counts, verification status) go in its `Last scan` line and are overwritten; the log records only what changed that run. Restating prior runs in the log is what makes it grow without bound.
 - Update `reports/scan-report.html` and the scan stamp in `reports/index.html` by default whenever a target scan is run, under the same exception.
 - If a career site blocks automated access, note the limitation and ask for a direct job URL or manual review.
