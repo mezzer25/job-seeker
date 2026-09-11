@@ -22,12 +22,27 @@ Use these sources:
 Workflow:
 
 1. Read `AGENTS.md`, `targets.md`, and existing leads recursively with `leads/**/*.md`.
+   For diffing against the previous sweep, read only the **last 1-2 entries** of `docs/scan-log.md`.
+   Do not read the whole log, and do not read `docs/scan-log-archive.md` unless asked about history.
 2. For each target company in `targets.md`, fetch the listed careers URL when accessible.
 3. After fetching a careers page, extract individual job posting URLs from the raw HTML wherever possible — look for `href` attributes on job listing anchor tags (e.g. Greenhouse, Lever, Workday, or similar ATS link patterns). Use these direct URLs in all output rather than linking back to the generic careers page.
 4. Look for likely-fit roles based on each target's `Target themes` plus any role preferences stated by the user.
 5. Do not create lead files unless the user explicitly asks or a role is clearly strong and you ask for confirmation first.
-6. Append a dated entry to the `## Scan Log` section of `targets.md` by default. Skip this only if the user explicitly asks for a read-only scan or no file updates.
-7. Keep the scan concise and factual.
+6. Overwrite each scanned target's `Last scan` line in `targets.md` with its current status: date,
+   accessible or blocked, posting count if known, new roles found, and any running count such as
+   consecutive verified runs. This line is **state** — replace it, never append to it.
+7. Append a dated entry to the end of `docs/scan-log.md` by default. Skip this only if the user
+   explicitly asks for a read-only scan or no file updates. Do **not** append to `targets.md`; its
+   `## Scan Log` section is a pointer only. If `docs/scan-log.md` has passed ~12 entries, move the
+   oldest into `docs/scan-log-archive.md` (append there, preserving order) in the same run.
+8. Keep the scan concise and factual, and keep the log entry disciplined:
+   - Write only what changed since the previous entry.
+   - Never restate prior runs. "Ninth consecutive run", "identical to every scan since 07-27",
+     "118 jobs vs 119 last time" are status; they belong in the target's `Last scan` line. Carrying
+     them into each entry is what makes a scan log grow without bound.
+   - No bullet longer than roughly 300 characters or 2 sentences.
+   - Aim for an entry under 80 lines. If it runs long, cut narrative, never the roles table.
+   - The roles table is the point of the entry. Prose is support, not the deliverable.
 
 Report format:
 
