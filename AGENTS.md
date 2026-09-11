@@ -46,7 +46,9 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 - `profile.md` - Career profile: target roles, preferences, must-haves, and background summary. Read before every workflow.
 - `resume/` - Plain-text Markdown resume(s). Read alongside `profile.md` to evaluate fit.
 - `resume/_template.md` - Blank resume template; copy and rename to fill in.
-- `targets.md` - Recurring target-company career search list and scan log.
+- `targets.md` - Recurring target-company career search list. Each target's `Last scan` line is overwritten each run.
+- `docs/scan-log.md` - Scan history, append-only. Read only the last 1-2 entries.
+- `docs/scan-log-archive.md` - Older scan entries, created on first rotation. Read only if asked about scan history.
 - `leads/` - Company folders, each containing one Markdown file per opportunity (`leads/<company-name>/<role-title>.md`).
 - `leads/_template.md` - Full template for new lead files.
 - `leads/_template-minimal.md` - Short template for early-stage or low-priority leads.
@@ -73,7 +75,8 @@ quote it verbatim in reports or outputs intended to be shared. Summarize instead
 ## Target Scanning
 
 - Use `targets.md` as the source of companies and career URLs to scan.
-- Record scan dates and outcomes in the `targets.md` scan log by default whenever a target scan is run, unless the user explicitly asks for a read-only scan or no file updates.
+- Record scan dates and outcomes in `docs/scan-log.md` by default whenever a target scan is run, unless the user explicitly asks for a read-only scan or no file updates. Overwrite the target's `Last scan` line in `targets.md` in the same run.
+- Keep state and history apart: cumulative facts about a target (streaks, posting counts, verification status) go in its `Last scan` line and are overwritten; the log records only what changed that run. Restating prior runs in the log is what makes it grow without bound.
 - Update `reports/scan-report.html` and the scan stamp in `reports/index.html` by default whenever a target scan is run, under the same exception.
 - If a career site blocks automated access, note the limitation and ask for a direct job URL or manual review.
 - Create dedicated lead files only for roles worth pursuing or explicitly requested.

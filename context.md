@@ -84,6 +84,17 @@ None currently noted.
 
 ## Session Log
 
+### 2026-09-11
+- **Split scan history out of `targets.md`, and separated state from history.** Two changes that go together; the second is the one that matters.
+  - Scan history now lives in `docs/scan-log.md` (append-only). `targets.md` keeps a pointer stub that is never appended to. `docs/scan-log-archive.md` is created on first rotation, at ~12 entries.
+  - Each target's `Scan status` field is renamed **`Last scan`** and is now explicitly *state*: overwritten every run, holding date, access result, posting count, new roles, and any running count such as consecutive verified runs.
+- **Why the second change exists.** Found on 2026-09-11 while investigating `job-seeker-ag`: its `targets.md` had reached 308KB from **5 target companies**, of which 301KB was scan log — 98% of the file. Entries had grown from 1.8KB (2026-05-12) to 23.7KB (2026-09-10), roughly doubling every six weeks. Cause was not entry count but entry content: each run re-narrated prior runs ("ninth consecutive run", "identical to every scan since 07-27", "118 jobs vs 119 on 09-07"), so entry size tracked elapsed time rather than what was found. One bullet in the 09-10 entry was a single 8,520-byte line.
+- The instruction driving it was this repo's own `targets.md` header, "append updates rather than overwriting useful history", propagated into instance `CLAUDE.md` files. Append-only is right for history and wrong for status. That line is rewritten here to say so.
+- Skill and prompt changes: `scan-targets` now (a) reads only the last 1-2 log entries for diffing, (b) overwrites the `Last scan` line, (c) appends to `docs/scan-log.md` with a rotation step, and (d) carries explicit entry discipline — only what changed, no restating prior runs, no bullet over ~300 characters, entry under 80 lines, roles table is the deliverable and prose is support. Same rules mirrored into `commands/scan-targets.md`, `AGENTS.md`, and the new `docs/scan-log.md` header.
+- `job-tracker-advanced` now reads the most recent entry from `docs/scan-log.md`. `README.md` and `plugins/job-tracker/README.md` updated. `job-tracker.plugin` rebuilt.
+- **Propagation still owed** (this repo is the baseline, so it goes first — done here now): `job-seeker-ag` needs the skill change, the log split, the `Last scan` convention, a `CLAUDE.md` line-55 fix, and its scheduled scan prompt regenerated — note its prompts are self-contained, so a skill edit alone will not change automated runs. `job-seeker-aag` already has the log split (done 2026-09-11) but needs this entry-discipline change and the `Last scan` convention.
+
+
 ### 2026-06-14 (later session)
 - Mirrored recent job-seeker-ag conventions into this repo: `AGENTS.md`, `commands/*.md`, and `plugins/job-tracker/skills/*/SKILL.md` (add-lead, scan-targets, job-status-report) updated.
   - Leads now use company folders: `leads/<company-name>/<role-title>.md`, created as needed; lookups/dedup now check `leads/**/*.md` recursively instead of flat `leads/*.md`.

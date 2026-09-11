@@ -115,7 +115,7 @@ Use these status values consistently. Each row suggests a typical next action; a
 This kit includes prompt templates in `commands/`. They work as Claude Code slash commands, OpenCode slash commands, or plain prompts pasted into any AI assistant — Claude, ChatGPT, Cursor, Gemini, or similar.
 
 - `/job-status-report`: summarize active leads, status counts, follow-ups, stale/risky leads, and recommended next moves.
-- `/scan-targets`: check career URLs in `targets.md`, summarize likely-fit roles, and append a scan log.
+- `/scan-targets`: check career URLs in `targets.md`, summarize likely-fit roles, update each target's `Last scan` line, and append an entry to `docs/scan-log.md`.
 - `/add-lead`: create a new lead file from pasted job details or a job URL.
 
 ### Use them with any AI assistant

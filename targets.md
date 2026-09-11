@@ -1,6 +1,10 @@
 # Job Search Targets
 
-Use this file to track recurring company career searches. Keep entries factual and append updates rather than overwriting useful history.
+Use this file to track recurring company career searches. Keep entries factual.
+
+**State vs history.** A target's `Last scan` line below is *status*: overwrite it every run.
+Scan history is appended to [`docs/scan-log.md`](docs/scan-log.md) and never restated here.
+Keeping the two apart is what stops the log growing without bound.
 
 ## Target Companies
 
@@ -9,20 +13,17 @@ Use this file to track recurring company career searches. Keep entries factual a
 - Careers URL: https://example.com/careers
 - Filter intent: Remote, New York City, or preferred region.
 - Target themes: partner, solutions, applied AI, cloud, security, program management, customer engineering.
-- Scan status: not scanned.
+- Last scan: not scanned yet.
 - Notes: Replace this example with a real target company.
+
+The `Last scan` line is **overwritten** by each scan and holds everything cumulative about this
+target, so the scan log never has to restate it. Format it as a single line, for example:
+
+`- Last scan: 2026-09-10 · accessible · 586 postings · 0 new · verified 4 runs running`
 
 ## Scan Log
 
-Append a dated entry each time you (or your AI assistant) scan target career pages. Include accessible pages, blocked pages, and likely-fit roles.
+Scan history lives in [`docs/scan-log.md`](docs/scan-log.md), not in this file, so that reading the
+target list stays cheap. `scan-targets` appends there; nothing is appended here.
 
-Example format (delete this block once you have a real entry):
-
-```text
-### 2026-05-13
-
-- Scanned Example Company careers page.
-- Likely-fit roles: Solutions Architect (remote), Customer Engineer (NYC).
-- Blocked: none.
-- Next: create lead file for Solutions Architect.
-```
+See that file for the entry format and the rules that keep entries from growing run over run.

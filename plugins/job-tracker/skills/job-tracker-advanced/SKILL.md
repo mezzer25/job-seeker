@@ -72,7 +72,7 @@ Before making recommendations, read the relevant files in the tracker workspace:
 
 ### Scan-To-Plan
 
-1. Use the most recent `## Scan Log` entry in `targets.md` (or run `scan-targets` first if none is fresh).
+1. Use the most recent entry in `docs/scan-log.md` (or run `scan-targets` first if none is fresh).
 2. Convert likely-fit roles into a prioritized application plan with target dates and warm-intro paths where known.
 
 ## Output Style

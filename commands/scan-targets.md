@@ -15,8 +15,10 @@ Workflow:
 2. For each target company in `targets.md`, fetch the listed careers URL when accessible.
 3. Look for likely-fit roles based on each target's `Target themes` plus any role preferences stated by the user.
 4. Do not create lead files unless the user explicitly asks or a role is clearly strong and you ask for confirmation first.
-5. Append a dated entry to the `## Scan Log` section of `targets.md` by default. Skip this only if I explicitly ask for a read-only scan or no file updates.
-6. Keep the scan concise and factual.
+5. Overwrite each scanned target's `Last scan` line in `targets.md` with its current status (date, accessible or blocked, posting count, new roles, any running count). That line is state — replace it, never append.
+6. Append a dated entry to the end of `docs/scan-log.md` by default. Skip this only if I explicitly ask for a read-only scan or no file updates. Do not append to `targets.md`. For diffing, read only the last 1-2 entries of `docs/scan-log.md`.
+7. Keep log entries disciplined: only what changed since the last entry, no restating prior runs, no bullet over ~300 characters, entry under 80 lines. Running counts belong in the `Last scan` line, not the log.
+8. Keep the scan concise and factual. The roles table is the deliverable; prose is support.
 
 Report format:
 

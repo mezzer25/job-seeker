@@ -14,7 +14,8 @@ A Cowork plugin that packages the job-seeker kit's recurring workflows as instal
 The skills assume the workspace follows the job-seeker kit conventions:
 
 - `AGENTS.md` — operating rules
-- `targets.md` — target-company watchlist and scan log
+- `targets.md` — target-company watchlist; each target's `Last scan` line is overwritten each run
+- `docs/scan-log.md` — scan history, append-only
 - `leads/` — one Markdown file per opportunity
 - `leads/_template.md` — full template
 - `leads/_template-minimal.md` — short template for early-stage leads
