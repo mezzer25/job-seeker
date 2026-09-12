@@ -100,6 +100,12 @@ worth acting on now. Never portal or tooling changes.
 Give 3-5 practical next actions, such as creating a lead file, applying, finding a warm intro, or
 refining target filters. Frame them as things the job seeker does, not maintenance tasks.
 
+**Never run git.** Write the files and stop. Do not `git add`, `git commit`, `git push`, branch,
+or tag — not even to "save" the scan output. These workspaces are version-controlled by their owner,
+who decides what gets committed and when, under their own commit conventions. A run that commits on
+its own initiative picks a message format nobody agreed to and puts unreviewed output into history.
+Leave the changes in the working tree and say in the chat summary which files you changed.
+
 Privacy rules:
 
 - Do not include personal contact details or unnecessary PII.
